@@ -9,5 +9,9 @@
 import UIKit
 
 class ListOfItemsCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet weak var DescriptionLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var PriceLabel: UILabel!
     
 }
