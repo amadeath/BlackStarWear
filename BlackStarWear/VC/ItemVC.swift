@@ -31,9 +31,10 @@ class ItemVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     nameLabel.text = name
-    colorLabel.text = color
+    colorLabel.text = "Цвет: \(color)"
     priceLabel.text = ("\(price.split(separator: ".")[0])"+"₽")
     mainTextLabel.text = String(mainText.split(separator: ".")[0])
+    mainTextLabel.text = String(mainTextLabel.text!.split(separator: "!")[0])
     pageView.numberOfPages = images.count
         
     for (_, data) in checkArr.enumerated() where data is NSDictionary {
@@ -91,9 +92,10 @@ extension ItemVC : UIPickerViewDelegate{
     return result
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    let model = sizeOfItem[row]
     let Storyboard = UIStoryboard(name: "Main", bundle: nil)
     let DvC = Storyboard.instantiateViewController(identifier: "PurchaseVC") as! PurchaseVC
     self.navigationController?.pushViewController(DvC, animated: true)
-        
+    Pers.shared.addItem(name: name, price: price, size: model.size, color : color)
     }
 }
